@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionário RODEFIT - Consultoria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-main: #0f0f0f;
+            --bg-card: #1f1f1f;
+            --accent: #ffffff;
+            --text-gray: #aaaaaa;
+            --input-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-main);
+            color: #fff;
+            padding: 40px 5%;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid #333;
+        }
+
+        header { text-align: center; margin-bottom: 40px; }
+        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: 3px; margin-bottom: 10px; display: block; }
+        h1 { font-size: 1.8rem; text-transform: uppercase; margin-bottom: 10px; }
+        p.subtitle { color: var(--text-gray); font-size: 0.9rem; }
+
+        section { margin-bottom: 30px; padding: 20px; border: 1px solid #2a2a2a; border-radius: 8px; }
+        h3 { margin-bottom: 20px; color: var(--accent); border-bottom: 1px solid #333; padding-bottom: 10px; text-transform: uppercase; font-size: 1rem; }
+
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
+        
+        input[type="text"], input[type="number"], select, textarea {
+            width: 100%;
+            padding: 12px;
+            background: var(--input-bg);
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .radio-group { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px; }
+        .radio-item { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+        input[type="radio"], input[type="checkbox"] { cursor: pointer; accent-color: var(--accent); }
+
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .btn-submit:hover { background: #ccc; transform: scale(1.02); }
+        .disclaimer { margin-top: 30px; font-size: 0.8rem; color: #666; text-align: center; }
+        
+        #loading { display: none; text-align: center; margin-top: 10px; font-weight: bold; color: var(--whatsapp-color); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <span class="logo"><i class="fas fa-dumbbell"></i> RODEFIT</span>
+        <h1>Consultoria de Treino</h1>
+        <p class="subtitle">Preencha os dados abaixo para iniciarmos sua transformação.</p>
+    </header>
+
+    <form id="quizForm">
+        <section>
+            <h3>1- Dados básicos</h3>
+            <div class="form-group">
+                <label>Nome Completo:</label>
+                <input type="text" name="nome" required>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
+                <div class="form-group">
+                    <label>Idade:</label>
+                    <input type="number" name="idade" required>
+                </div>
+                <div class="form-group">
+                    <label>Altura (cm):</label>
+                    <input type="text" name="altura" placeholder="Ex: 175" required>
+                </div>
+                <div class="form-group">
+                    <label>Peso (kg):</label>
+                    <input type="text" name="peso" placeholder="Ex: 80" required>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3>2- Objetivo principal</h3>
+            <div class="radio-group">
+                <label class="radio-item"><input type="radio" name="objetivo" value="Ganho de massa" required> Ganho de massa</label>
+                <label class="radio-item"><input type="radio" name="objetivo" value="Emagrecimento"> Emagrecimento</label>
+                <label class="radio-item"><input type="radio" name="objetivo" value="Definição"> Definição</label>
+                <label class="radio-item"><input type="radio" name="objetivo" value="Condicionamento"> Condicionamento</label>
+                <label class="radio-item"><input type="radio" name="objetivo" value="Saúde/Bem-estar"> Saúde/Bem-estar</label>
+            </div>
+            <div class="form-group" style="margin-top:15px;">
+                <label>Outro objetivo:</label>
+                <input type="text" name="objetivo_outro">
+            </div>
+        </section>
+
+        <section>
+            <h3>3- Experiência com treino</h3>
+            <select name="experiencia" required>
+                <option value="Iniciante">Iniciante (nunca treinei ou parei há muito tempo)</option>
+                <option value="Intermediário">Intermediário</option>
+                <option value="Avançado">Avançado</option>
+            </select>
+            <div class="form-group" style="margin-top:15px;">
+                <label>Há quanto tempo treina?</label>
+                <input type="text" name="tempo_treino">
+            </div>
+        </section>
+
+        <section>
+            <h3>4- Rotina de treinos</h3>
+            <div class="form-group">
+                <label>Quantos dias por semana você consegue treinar?</label>
+                <input type="number" name="dias_semana" min="1" max="7" required>
+            </div>
+            <label>Treina em:</label>
+            <div class="radio-group">
+                <label class="radio-item"><input type="checkbox" name="local_treino" value="Academia"> Academia</label>
+                <label class="radio-item"><input type="checkbox" name="local_treino" value="Casa"> Casa</label>
+            </div>
+        </section>
+
+        <section>
+            <h3>5 & 6- Alimentação e Suplementos</h3>
+            <label>Qualidade da alimentação atual:</label>
+            <div class="radio-group">
+                <label class="radio-item"><input type="radio" name="dieta_qualidade" value="Ruim"> Ruim</label>
+                <label class="radio-item"><input type="radio" name="dieta_qualidade" value="Regular"> Regular</label>
+                <label class="radio-item"><input type="radio" name="dieta_qualidade" value="Boa"> Boa</label>
+                <label class="radio-item"><input type="radio" name="dieta_qualidade" value="Muito Boa"> Muito Boa</label>
+            </div>
+            <div class="form-group" style="margin-top:15px;">
+                <label>Usa suplementos? Quais?</label>
+                <textarea name="suplementos" rows="2" placeholder="Ex: Creatina, Whey..."></textarea>
+            </div>
+        </section>
+
+        <section>
+            <h3>7- Saúde e Cuidados</h3>
+            <label>Possui lesão ou condição de saúde?</label>
+            <div class="radio-group">
+                <label class="radio-item"><input type="radio" name="tem_lesao" value="Não" checked> Não</label>
+                <label class="radio-item"><input type="radio" name="tem_lesao" value="Sim"> Sim</label>
+            </div>
+            <div class="form-group" style="margin-top:10px;">
+                <input type="text" name="qual_lesao" placeholder="Se sim, qual?">
+            </div>
+        </section>
+
+        <section>
+            <h3>8 & 9- Rotina e Expectativa</h3>
+            <div class="form-group">
+                <label>Horas de sono por noite:</label>
+                <input type="number" name="horas_sono">
+            </div>
+            <div class="form-group">
+                <label>O que você espera dessa consultoria?</label>
+                <textarea name="expectativa" rows="3" required></textarea>
+            </div>
+        </section>
+
+        <button type="submit" class="btn-submit" id="submitBtn">Enviar Questionário</button>
+        <div id="loading">Enviando dados...</div>
+    </form>
+
+    <p class="disclaimer">As orientações não substituem acompanhamento médico ou nutricional. Tudo será adaptado à sua rotina e objetivos.</p>
+</div>
+
+<script>
+    const form = document.getElementById('quizForm');
+    const btn = document.getElementById('submitBtn');
+    const loading = document.getElementById('loading');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+        loading.style.display = 'block';
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        
+        // Tratando checkboxes de local de treino
+        data.local_treino = formData.getAll('local_treino').join(', ');
+
+        // Envio para o Webhook do n8n
+        fetch('https://n8n.srv1149367.hstgr.cloud/webhook/aa3df441-55b0-4d8b-a688-9b24743057f1', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Questionário enviado com sucesso! Entraremos em contato em breve.');
+                form.reset();
+                window.location.href = 'index.html'; // Volta para a home
+            } else {
+                alert('Erro ao enviar. Tente novamente mais tarde.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro de conexão com o servidor.');
+        })
+        .finally(() => {
+            btn.disabled = false;
+            btn.style.opacity = '1';
+            loading.style.display = 'none';
+        });
+    });
+</script>
+
+</body>
+</html>

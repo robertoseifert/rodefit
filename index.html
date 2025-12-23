@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RODEFIT - Centro de Treinamento</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-main: #0f0f0f;
+            --bg-secondary: #141414;
+            --bg-card: #1f1f1f;
+            --text-light: #f0f0f0;
+            --text-gray: #aaaaaa;
+            --accent: #ffffff;
+            --whatsapp-color: #25d366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        section { padding: 80px 5%; }
+        h2 { font-size: 2rem; text-transform: uppercase; margin-bottom: 40px; text-align: center; font-weight: 800; letter-spacing: 1px; }
+
+        /* HEADER SEM O BOTÃO */
+        header {
+            background-color: rgba(20, 20, 20, 0.95);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: center; /* Centralizei a logo já que não tem botão na direita */
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #222;
+            backdrop-filter: blur(10px);
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+            color: var(--accent);
+            transform: rotate(-15deg);
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+        }
+
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1470&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+        
+        .hero h1 span { color: #888; }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+        }
+
+        .btn-primary { background-color: var(--accent); color: var(--bg-main); }
+        .btn-primary:hover { background-color: #ccc; }
+
+        .btn-outline { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); }
+        .btn-outline:hover { background-color: rgba(255,255,255,0.1); }
+
+        .methodology-section {
+            background-color: var(--bg-secondary);
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .method-card {
+            background-color: var(--bg-card);
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid #333;
+            transition: transform 0.3s;
+        }
+        .method-card:hover { transform: translateY(-10px); border-color: #555; }
+
+        .method-icon { font-size: 3rem; margin-bottom: 25px; color: var(--accent); }
+        .method-card h3 { font-size: 1.2rem; margin-bottom: 15px; text-transform: uppercase; }
+        .method-card p { color: var(--text-gray); font-size: 0.95rem; }
+
+        .trainer-section {
+            background-color: var(--bg-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .trainer-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            max-width: 1000px;
+            width: 100%;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            border: 1px solid #333;
+        }
+
+        .trainer-photo {
+            flex: 1;
+            background-image: url('treinador.jpeg'); 
+            background-size: cover;
+            background-position: center top;
+            min-height: 400px;
+            background-color: #222;
+        }
+
+        .trainer-info {
+            flex: 1.2;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .trainer-name-box { border-left: 4px solid var(--accent); padding-left: 20px; margin-bottom: 25px; }
+        .trainer-info h2 { font-size: 2.5rem; margin-bottom: 5px; text-align: left; color: var(--accent); line-height: 1;}
+        .trainer-info h4 { color: var(--text-gray); text-transform: uppercase; font-size: 1rem; letter-spacing: 2px; font-weight: 400;}
+        
+        .trainer-bio { color: #ccc; margin-bottom: 30px; font-size: 1.05rem; }
+
+        .trainer-specs li { margin-bottom: 15px; color: #ddd; display: flex; align-items: center; }
+        .trainer-specs i { color: var(--accent); margin-right: 15px; font-size: 1.2rem; }
+
+        .video-section {
+            background-color: var(--bg-secondary);
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .video-container iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp-color);
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+            z-index: 2000;
+            transition: 0.3s;
+        }
+
+        .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 0 20px rgba(37, 211, 102, 0.8); }
+
+        footer {
+            background-color: #050505;
+            padding: 50px 5% 20px;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+        
+        .footer-logo { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; display: inline-block; color: var(--accent);}
+        .footer-text { color: #666; font-size: 0.9rem; margin-bottom: 10px; }
+
+        @media (max-width: 768px) {
+            .logo-text { font-size: 1.4rem; }
+            .logo-icon { font-size: 1.4rem; }
+            /* Removido o ajuste do btn-nav pois ele não existe mais */
+
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            .hero-buttons { flex-direction: column; width: 80%; gap: 15px; }
+            .btn { width: 100%; }
+            
+            .trainer-card { flex-direction: column; }
+            .trainer-photo { min-height: 350px; }
+            .trainer-info { padding: 30px 25px; }
+            .trainer-info h2 { font-size: 2rem; }
+            
+            section { padding: 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-container">
+            <i class="fas fa-dumbbell logo-icon"></i>
+            <span class="logo-text">RODEFIT</span>
+        </div>
+        </header>
+
+    <section class="hero">
+        <h1>Seu potencial <br><span>levado ao extremo.</span></h1>
+        <p>Metodologia exclusiva RODEFIT. Treinamento inteligente focado na sua evolução real.</p>
+        
+        <div class="hero-buttons">
+            <a href="questionario.html" class="btn btn-primary">Começar Agora</a>
+            <a href="https://wa.me/554797072186?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20RODEFIT%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" class="btn btn-outline">
+                <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Fale Conosco
+            </a>
+        </div>
+    </section>
+
+    <section class="methodology-section">
+        <h2>Nossa Metodologia</h2>
+        <div class="methodology-grid">
+            <div class="method-card">
+                <i class="fas fa-bolt method-icon"></i>
+                <h3>Alta Intensidade</h3>
+                <p>Treinos otimizados para gerar o máximo de resultado no menor tempo possível, respeitando seu ritmo.</p>
+            </div>
+            <div class="method-card">
+                <i class="fas fa-cogs method-icon"></i>
+                <h3>Treino Funcional</h3>
+                <p>Movimentos que preparam seu corpo para a vida real. Mais mobilidade, força e resistência.</p>
+            </div>
+            <div class="method-card">
+                <i class="fas fa-brain method-icon"></i>
+                <h3>Mentalidade</h3>
+                <p>Além do físico, forjamos a disciplina necessária para você alcançar e manter seus objetivos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="trainer-section">
+        <h2>O Treinador</h2>
+        <div class="trainer-card">
+            <div class="trainer-photo"></div> 
+            
+            <div class="trainer-info">
+                <div class="trainer-name-box">
+                    <h2>Mariano</h2>
+                    <h4>Head Coach RODEFIT</h4>
+                </div>
+                <p class="trainer-bio">Especialista em transformação física e performance. Minha missão na RODEFIT é entregar um treinamento que une ciência e prática, focado na individualidade biológica de cada aluno para resultados sólidos e duradouros.</p>
+                
+                <ul class="trainer-specs">
+                    <li><i class="fas fa-check-circle"></i> Consultoria Online Personalizada</li>
+                    <li><i class="fas fa-check-circle"></i> Treinamento Presencial de Elite</li>
+                    <li><i class="fas fa-check-circle"></i> Avaliação Física Completa</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="video-section">
+        <h2>Resultados Reais</h2>
+        <p style="color: #aaa; margin-bottom: 30px;">Veja o que nossos alunos estão conquistando.</p>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=placeholder_video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <footer>
+        <span class="footer-logo"><i class="fas fa-dumbbell"></i> RODEFIT</span>
+        <p class="footer-text">Centro de Treinamento de Alta Performance.</p>
+        <p class="footer-text">&copy; 2024 RODEFIT. Todos os direitos reservados.</p>
+    </footer>
+
+    <a href="https://wa.me/554797072186?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20RODEFIT!" class="whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>
